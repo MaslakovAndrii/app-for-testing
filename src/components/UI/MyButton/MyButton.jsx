@@ -3,9 +3,9 @@ import classes from './MyButton.module'
 
 const MyButton = () => {
      return (
-          <div>
+          <button>
                
-          </div>
+          </button>
      );
 };
 

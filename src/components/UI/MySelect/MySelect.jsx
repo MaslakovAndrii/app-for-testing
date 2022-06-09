@@ -3,9 +3,9 @@ import classes from './MySelect.module'
 
 const MySelect = () => {
      return (
-          <div>
+          <select>
                
-          </div>
+          </select>
      );
 };
 

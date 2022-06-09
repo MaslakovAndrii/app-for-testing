@@ -3,9 +3,7 @@ import classes from './MyInput.module'
 
 const MyInput = () => {
      return (
-          <div>
-               
-          </div>
+          <input/>
      );
 };
 
