@@ -1,3 +1,4 @@
+import AddQuestions from './components/AddQuestions';
 import './style/App.css';
 
 function App() {
@@ -5,7 +6,7 @@ function App() {
 
      return (
           <div className="App">
-          
+               <AddQuestions/>
           </div>
      );
 }

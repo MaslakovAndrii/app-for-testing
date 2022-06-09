@@ -1,9 +1,9 @@
 import React from 'react';
-import classes from './MyInput.module'
+// import classes from './MyInput.module'
 
-const MyInput = () => {
+const MyInput = ({placeholder}) => {
      return (
-          <input/>
+          <input placeholder={placeholder}/>
      );
 };
 
