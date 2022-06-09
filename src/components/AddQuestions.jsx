@@ -5,12 +5,19 @@ import MySelect from './UI/MySelect/MySelect';
 
 const AddQuestions = () => {
 
-     const [option, setOption] = useState('')
-     console.log(option);
 
+     const createQuestion = (event) => {
+          event.preventDefault()
+          console.log('Вопрос создан');
+     }
+
+     const [option, setOption] = useState('')
 
      return (
-          <form>
+          <form 
+               className='add-question'
+               onSubmit={createQuestion}>
+
                <MyInput placeholder='Введите текст вопроса' />
                <MyInput placeholder='Введите правильный ответ (через запятую если их несколько)' />
                <MySelect
