@@ -3,38 +3,56 @@ import MyButton from './UI/MyButton/MyButton';
 import MyInput from './UI/MyInput/MyInput';
 import MySelect from './UI/MySelect/MySelect';
 
-const AddQuestions = () => {
+const AddQuestions = ({ create }) => {
 
+     const [question, setQuestion] = useState({textQuestion: '', inputMethod: '', answerCorrect: '', answerOptions: ''})
+     
 
-     const createQuestion = (event) => {
-          event.preventDefault()
-          console.log('Вопрос создан');
+     const createQuestion = (e) => {
+          e.preventDefault();
+          const newQuestion = {
+               ...question,
+               id: Date.now()
+          }
+          create(newQuestion)
+          setQuestion({textQuestion: '', inputMethod: '', answerCorrect: '', answerOptions: ''})
      }
 
-     const [option, setOption] = useState('')
+
+
 
      return (
-          <form 
-               className='add-question'
-               onSubmit={createQuestion}>
+          <form className='add-question'>
 
-               <MyInput placeholder='Введите текст вопроса' />
-               <MyInput placeholder='Введите правильный ответ (через запятую если их несколько)' />
+               <MyInput
+                    placeholder='Введите текст вопроса'
+                    value={question.textQuestion}
+                    onChange={e => setQuestion({...question, textQuestion: e.target.value})}/>
+
+               <MyInput
+                    placeholder='Введите правильный ответ (если их несколько разделяйте ";")'
+                    value={question.answerCorrect}
+                    onChange={e => setQuestion({...question, answerCorrect: e.target.value})}/>
                <MySelect
-                    value={option}
+                    value={question.inputMethod}
                     defaultValue="Способ ответа"
-                    onChange={setOption}
+                    onChange={e => setQuestion({...question, inputMethod: e})}
                     options={[
                          { value: 'input', name: 'Ввести ответ вручную' },
                          { value: 'radio', name: 'Выбрать вариант из возможных' },
                          { value: 'checkbox', name: 'Вы несколько вариантов из возможных' },
                          { value: 'select', name: 'Выбрать из списка' }
                     ]} />
-               {option.includes('radio') || option.includes('checkbox') || option.includes('select')
-                    ? <MyInput placeholder='Введите неправильные варианты ответов (через запятую если их несколько)' />
+               {question.inputMethod.includes('radio') || question.inputMethod.includes('checkbox') || question.inputMethod.includes('select')
+                    ?
+                    <MyInput
+                         placeholder='Введите неправильные варианты ответов (если их несколько разделяйте ";")'
+                         value={question.answerOptions}
+                         onChange={e => setQuestion({...question, answerOptions: e.target.value})}
+                    />
                     : null
                }
-               <MyButton>Создать</MyButton>
+               <MyButton onClick={createQuestion}>Создать</MyButton>
           </form>
      );
 };

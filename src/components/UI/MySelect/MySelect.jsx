@@ -7,14 +7,14 @@ const MySelect = ({ value, onChange, defaultValue, options }) => {
                value={value}
                onChange={e => onChange(e.target.value)}>
                <option disabled value=''>{defaultValue}</option>
-               {options.map((option => [
+               {options.map(option => 
                     <option
                          key={option.value}
                          value={option.value}>
 
                          {option.name}
                     </option>
-               ]))}
+               )}
           </select>
      );
 };
